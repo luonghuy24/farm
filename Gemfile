@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mongoid', github: "mongoid/mongoid"
 gem 'carrierwave'
 gem 'pry'
+gem 'haml'
 gem 'bootstrap-sass', '~> 3.3.3'
 
 # Use ActiveModel has_secure_password
