@@ -1,0 +1,21 @@
+.h1	Edit Contact
+= simple_form_for @user, :html => {:class => 'form-horizontal simple-form-user' } do |f|
+  = f.input :username, :label_html => {:class => 'simple-form-name-label'}, 
+  									:input_html => {:class => 'simple-form-input-name'}, 
+  									:wrapper_html => { :class => 'simple-form-name' }
+  = f.input :email, :label_html => {:class => 'simple-form-email-label'}, 
+  									:input_html => {:class => 'simple-form-input-email'}, 
+  									:wrapper_html => { :class => 'simple-form-email' }
+  = f.input :password, :label_html => {:class => 'simple-form-password-label'},
+											 input_html: { class: 'simple-form-input-password' }, 
+											 wrapper_html: { class: 'simple-form-password' }
+  = f.input :avatar
+  -if @user.avatar?
+    = image_tag @user.avatar.thumb.url
+  -else
+    %p No Avatar
+
+  .form-actions
+    = f.button :submit, "Edit", :class => "btn btn-primary"
+
+%p= link_to "Delete Account", user_url(@user), {method: 'delete', data: { confirm: "You sure?" }, class: 'btn btn-danger' }

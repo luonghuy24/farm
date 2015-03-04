@@ -23,10 +23,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 gem 'mongoid', github: "mongoid/mongoid"
-gem 'carrierwave'
 gem 'pry'
 gem 'haml'
+gem "haml-rails"
 gem 'bootstrap-sass', '~> 3.3.3'
+gem 'devise'
+gem 'faker'
+gem 'fabrication'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem "mini_magick"
+gem 'simple_form'
+gem 'kaminari'
+gem 'cancancan', '~> 1.10'
+gem "mongoid-enum"
+
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

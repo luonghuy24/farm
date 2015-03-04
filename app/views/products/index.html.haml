@@ -1,0 +1,28 @@
+%h1
+  Products List
+= paginate @products
+%table.table.table-striped
+  %tr
+    %th= "#"
+    %th= "Product name"
+    %th= "Product code"
+    %th= "Price"
+    %th= "Action"
+  %product_list
+    - @products.each_with_index do |product, index| 
+      %tr
+        - if params[:page].to_i == 0
+          %td#index= index+1
+        - else
+          %td#index= index+1 + 10*(params[:page].to_i-1)
+        %td#name= product.product_name
+        %td#code= product.product_code
+        %td#price= product.price
+        %td
+          = link_to "Show", product_url(product), {class: 'btn btn-success'}
+
+          - if can? :edit, :delete, product
+            = link_to "Edit", edit_product_url(product), {class: 'btn btn-primary'}
+            = link_to "Delete", product_url(product), {method: 'delete', data: { confirm: "You sure?" }, class: 'btn btn-danger' }
+%p#new= link_to "Create new", new_product_url , {class: 'btn btn-success'}
+= paginate @products

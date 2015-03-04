@@ -1,8 +1,20 @@
 .top-bar1.container
 	.top-bar1-left
-		%a{ :href	=> '#' } 
+		%a{ :href	=> root_path } 
 			=image_tag ('logo.png')
 	.top-bar1-right
-		%a{ :href => '#' } sign in
-		%a{ :href => '#' } sign up
-		%a{ :href => '#' } favorite
+		- if user_signed_in?
+			- if current_user.admin?
+				%h1 hihihihihihihiihihihihhi
+			.top-bar1-right-dropdown.dropdown
+				%a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+					%p= current_user.email
+				%ul.dropdown-menu{"role" => "menu"}
+					%li
+						%p= link_to "show", user_url(current_user)
+						%p= link_to "edit", edit_user_url(current_user)
+						%p= link_to "Sign out", destroy_user_session_url, :method => :delete
+		- else
+			%p= link_to "Sign in", new_user_session_url
+			%p= link_to "Sign up", new_user_registration_url
+			

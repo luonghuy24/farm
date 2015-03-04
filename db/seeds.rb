@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts "** seed 20 users **"
+	20.times { Fabricate(:user) }
+puts "** seed 20 products **"
+	20.times { Fabricate(:product) }

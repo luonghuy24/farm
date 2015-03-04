@@ -1,0 +1,7 @@
+%h2 Edit Product #{@product.product_name}
+= simple_form_for @product, :html => {:class => 'form-horizontal simple-form-user' } do |f|
+  = f.input :product_name
+  = f.input :product_code
+  = f.input :description
+  = f.input :price  
+  = f.submit

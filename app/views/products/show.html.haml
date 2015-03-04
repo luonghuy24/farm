@@ -1,0 +1,14 @@
+.product_show
+  #name Product name:  
+  %h2= @product.product_name
+  #code Product Code:  
+  %h2= @product.product_code
+  #description "Description: "
+  %h2= @product.description
+  #price Price: 
+  %h2= @product.price
+
+.product_menu
+  %p#edit= link_to "Edit", edit_product_url(@product), {class: 'btn btn-primary'}
+  %p#delete= link_to "Delete Account", product_url(@product), {method: 'delete', data: { confirm: "You sure?" }, class: 'btn btn-danger' }
+

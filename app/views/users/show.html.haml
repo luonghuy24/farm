@@ -1,0 +1,10 @@
+.username
+	%h1=@user.username
+	%br
+	%h1=@user.email
+	%br
+	=image_tag @user.avatar.thumb.url.to_s
+	%br
+	%a{ :href => @user.avatar.url.to_s } 
+		Click to view fullsize
+

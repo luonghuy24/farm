@@ -1,0 +1,39 @@
+.h1
+	User List
+= paginate @users
+
+%table.table.table-striped
+	%tr
+		%th= "#"
+		%th= "User Name"
+		%th= "User Email"
+		%th= "Action"
+	%user_list
+		- @users.each_with_index do |user, index| 
+			%tr
+				- if params[:page].to_i == 0
+					%td#index= index+1
+				- else
+					%td#index= index+1 + 10*(params[:page].to_i-1)
+				%td= user.username
+				%td= user.email
+				%td
+					=link_to 'Show', user_path(user), {class: 'btn btn-primary'}
+					- if can? :edit, :delete, User
+						=link_to 'Edit', user_path(user), {class: 'btn btn-success'}
+						=link_to 'Delete', user_path(user), {class: 'btn btn-danger'}
+
+/ %table.table.table-striped
+/   %tr
+/     %th= "#"
+/     %th= "Product name"
+/     %th= "Product code"
+/     %th= "Price"
+/     %th= "Action"
+/   %product-list
+/     - @products.each_with_index do |product, index| 
+/       %tr
+/         %td#index= index+1
+/         %td#name= product.product_name
+/         %td#code= product.product_code
+/         %td#price= product.price
