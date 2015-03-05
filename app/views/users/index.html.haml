@@ -20,20 +20,7 @@
 				%td
 					=link_to 'Show', user_path(user), {class: 'btn btn-primary'}
 					- if can? :edit, :delete, User
-						=link_to 'Edit', user_path(user), {class: 'btn btn-success'}
+						=link_to 'Edit', edit_user_path(user), {class: 'btn btn-success'}
 						=link_to 'Delete', user_path(user), {class: 'btn btn-danger'}
+%p#new= link_to "Create new", new_user_url , {class: 'btn btn-success'}
 
-/ %table.table.table-striped
-/   %tr
-/     %th= "#"
-/     %th= "Product name"
-/     %th= "Product code"
-/     %th= "Price"
-/     %th= "Action"
-/   %product-list
-/     - @products.each_with_index do |product, index| 
-/       %tr
-/         %td#index= index+1
-/         %td#name= product.product_name
-/         %td#code= product.product_code
-/         %td#price= product.price
