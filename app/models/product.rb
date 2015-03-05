@@ -13,4 +13,8 @@ class Product
 	field :output,						type: Integer
 	field :stock,							type: Integer
 	field :price,							type: Integer
+
+  has_many :favorites
+
+
 end

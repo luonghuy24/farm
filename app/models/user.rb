@@ -29,6 +29,7 @@ class User
 
   enum :role, [:user, :vip, :admin]
 
+  has_many :favorites
 
   # after_initialize :set_default_role, :if => :new_record?
 
