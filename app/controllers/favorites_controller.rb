@@ -8,11 +8,14 @@ class FavoritesController < ApplicationController
 	end
 
 	def new
-
+		@fav = Favorite.new
 	end
 
 	def create
-
+		user = User.where(email: params[:user_email]).first
+		product = Product.find(params[:product_id])
+		@fav = Favorite.new(user: user, product: product)
+		@fav.save
 	end
 
 	def edit
@@ -24,11 +27,7 @@ class FavoritesController < ApplicationController
 	end
 
 	def destroy
-		
+		@fav = Favorite.find(params[:id]).delete
 	end
 
-	private
-		def favorite_params
-      params.require(:favorite).permit(:user_id, :product_id)
-		end
 end

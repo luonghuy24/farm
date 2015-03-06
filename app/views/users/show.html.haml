@@ -8,3 +8,6 @@
 	%a{ :href => @user.avatar.url.to_s } 
 		Click to view fullsize
 
+.user-favorites
+	%p= Favorite.where(user: @user).count.to_s + " favorite products"
+		
