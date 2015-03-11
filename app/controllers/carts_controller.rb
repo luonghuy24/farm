@@ -6,6 +6,13 @@ class CartsController < ApplicationController
 		@items = @cart.items.page(params[:page])
 	end
 
+	def clear
+		@cart = Cart.find(params[:id])
+		@cart.items = []
+		@cart.total_cost = 0
+		@cart.save
+	end
+
 	def new
 		@cart = Cart.new
 	end
@@ -28,6 +35,11 @@ class CartsController < ApplicationController
 		end
 	end
 
+	def edit
+		@cart = Cart.find(params[:id])	
+		@items = @cart.items.page(params[:page])
+	end
+	
 	def update
 	end
 

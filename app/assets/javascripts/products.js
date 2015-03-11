@@ -1,4 +1,3 @@
-// data = {user, product}
 $('document').ready(function() {
 	var user_id = document.querySelector('.current-user-email').id
 
@@ -40,6 +39,7 @@ $('document').ready(function() {
 		var price = $('#'+product_id+'.modal-product-price').data("value");
 		var cost = price*quantity;
 		$("#"+product_id+'.modal-product-cost').val(cost);
+		// $("#"+product_id+'.modal-product-cost').html(cost);
 	});
 
 	$('.add_to_cart').click(function(){
@@ -66,7 +66,9 @@ $('document').ready(function() {
 			url: "/items/"+item_id,
 			data: {item_id: item_id}
 		})
-    document.location.reload(); 
+    document.location.reload();
+		var total_cost = $('#total-cost').html() - $("#"+product_id+'.edit-item-product-cost').val();
+		$("#total-cost").html(total_cost);
 	})
 
 });

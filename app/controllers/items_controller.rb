@@ -4,4 +4,11 @@ class ItemsController < ApplicationController
 		@item = Item.find(params[:id])
 		@item.delete
   end
+
+  def update
+  	@item = Item.find(params[:id])
+  	@item.quantity = params[:quantity]
+  	@item.cost = params[:cost]
+  	@item.save
+  end
 end

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :orders
   resources :items
   resources :users do
-    resources :carts
+    resources :carts do
+      post 'clear', on: :member
+    end
   end
   post '/users/new' => 'users#create', as: :create_user 
   # get '/current_cart' => 'carts#show', as: :current_cart

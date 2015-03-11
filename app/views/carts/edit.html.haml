@@ -13,26 +13,22 @@
   %item_list
     - @items.each_with_index do |item, index| 
       - product = item.product
-      %tr{id: product.id.to_s}
+      %tr{id: product.id.to_s, "data-value": item.id}
         - if params[:page].to_i == 0
           %td#index= index+1
         - else
           %td#index= index+1 + 10*(params[:page].to_i-1)
         %td#name= product.product_name
         %td#code= product.product_code
-        %td#price= product.price
-        %td#quntity= item.quantity
-        %td#cost= item.cost
+        %td{class: "edit-item-product-price", id: product.id, "data-value": product.price }= product.price
+        %td
+          %input.edit-item-product-quantity{ type: "integer", "value": item.quantity, id: product.id}
+        - cost = item.quantity * product.price
+        %td
+          %input{class: 'edit-item-product-cost', id: product.id, "value": cost, disabled: true}
         %td#action
           = link_to "Show", product_url(product), {class: 'btn btn-primary'}
           %p.delete_item{ class:"btn btn-danger", id: item.id } delete
-
-          - if Favorite.where(user: current_user, product: product).first.nil?
-            %p.favorite_product_unliked{class: "btn btn-warning #{product.id}", id: product.id} Like
-            %p.favorite_product_liked{class: "btn btn-info #{product.id}", id: product.id, style:'display: none'} Liked
-          -else
-            %p.favorite_product_unliked{class: "btn btn-warning #{product.id}",id: product.id, style: 'display: none'} Like
-            %p.favorite_product_liked{class: "btn btn-info #{product.id} ", id: product.id, "data-value": Favorite.where(user: current_user, product: product).first.id} Liked
 = paginate @items
 %table.table.table-striped
   %tr
@@ -44,5 +40,5 @@
     %td
     %td#total-cost= total_cost
     %td 
-
-%p{class: "btn btn-default"}= link_to "Edit", edit_user_cart_url(current_user, @cart) 
+%p{class: "btn btn-default"}= link_to "Save to Order", edit_user_cart_url(current_user, @cart) 
+= link_to "Clear Cart", clear_user_cart_url(current_user,@cart), {class: "btn btn-danger",method: "post", data: {confirm: "Are You Sure?"}}
