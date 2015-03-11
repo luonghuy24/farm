@@ -15,6 +15,5 @@ class Product
 	field :price,							type: Integer
 
   has_many :favorites
-
-
+  belongs_to :item
 end

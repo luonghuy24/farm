@@ -12,7 +12,7 @@ class FavoritesController < ApplicationController
 	end
 
 	def create
-		user = User.where(email: params[:user_email]).first
+		user = User.find(params[:user_id])
 		product = Product.find(params[:product_id])
 		@fav = Favorite.new(user: user, product: product)
 		@fav.save
@@ -27,7 +27,8 @@ class FavoritesController < ApplicationController
 	end
 
 	def destroy
-		@fav = Favorite.find(params[:id]).delete
+		product = Product.find(params[:product_id])
+		@fav = Favorite.where(user: current_user, product: product).first.delete
 	end
 
 end

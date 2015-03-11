@@ -4,16 +4,17 @@
 			=image_tag ('logo.png')
 	.top-bar1-right
 		- if user_signed_in?
-			- if current_user.admin?
-				%h1 hihihihihihihiihihihihhi
+			- current_cart = current_user.cart			
+			.cart-icon= link_to image_tag("cart.png"), user_cart_url(current_user,current_cart)
 			.top-bar1-right-dropdown.dropdown
 				%a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
-					%p.current-user-email= current_user.email
+					%p.current-user-email{id: "#{current_user.id}"}= current_user.email
 				%ul.dropdown-menu{"role" => "menu"}
 					%li
 						%p= link_to "show", user_url(current_user)
 						%p= link_to "edit", edit_user_url(current_user)
 						%p= link_to "Sign out", destroy_user_session_url, :method => :delete
+			
 		- else
 			%p= link_to "Sign in", new_user_session_url
 			%p= link_to "Sign up", new_user_registration_url

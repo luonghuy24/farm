@@ -1,0 +1,68 @@
+%h1
+  Your Current Cart
+= paginate @items
+%table.table.table-striped
+  %tr
+    %th= "#"
+    %th= "Product name"
+    %th= "Product code"
+    %th= "Price"
+    %th= "Quantity"
+    %th= "Cost"
+    %th= "Action"
+  %item_list
+    - @items.each_with_index do |item, index| 
+      - product = item.product
+      %tr{id: product.id.to_s}
+        - if params[:page].to_i == 0
+          %td#index= index+1
+        - else
+          %td#index= index+1 + 10*(params[:page].to_i-1)
+        %td#name= product.product_name
+        %td#code= product.product_code
+        %td#price= product.price
+        %td#quantity= item.quantity
+        %td#cost= item.cost
+        %td#action
+          = link_to "Show", product_url(product), {class: 'btn btn-primary'}
+          %p.delete_item{ class:"btn btn-danger", id: item.id } delete
+
+          - if Favorite.where(user: current_user, product: product).first.nil?
+            %p.favorite_product_unliked{class: "btn btn-warning #{product.id}", id: product.id} Like
+            %p.favorite_product_liked{class: "btn btn-info #{product.id}", id: product.id, style:'display: none'} Liked
+          -else
+            %p.favorite_product_unliked{class: "btn btn-warning #{product.id}",id: product.id, style: 'display: none'} Like
+            %p.favorite_product_liked{class: "btn btn-info #{product.id} ", id: product.id, "data-value": Favorite.where(user: current_user, product: product).first.id} Liked
+          /   /add-to-cart button--------------
+          /   / %p.add_to_cart{class: "btn btn-warning #{product.id}", id: product.id} Add to cart
+          /   .add-to-cart-modal
+          /     %p.add-to-cart{class: "btn btn-md btn-primary", id: product.id} Add to cart
+          /     #add-to-cart-modal-box.modal.fade{id: product.id}
+          /       .modal-dialog 
+          /         .modal-content
+          /           %table.table.table-striped
+          /             %tr
+          /               %th Product Name
+          /               %th Quantity
+          /               %th Price
+          /               %th Currency
+          /               %th Cost
+          /             %tr
+          /               %td#modal-product-name= product.product_name
+          /               %td
+          /                 %input.modal-product-quantity{ type: "integer", "value": 1, id: product.id}
+          /               %td{class: "modal-product-price", id: product.id, "data-value": product.price}= product.price
+          /               %td#modal-product-currency VND
+          /               %td
+          /                 %input{class: 'modal-product-cost', id: product.id, "value": product.price, disabled: true}
+          /           %p.add_to_cart{class: "btn btn-warning #{product.id}", id: product.id} Add to cart
+          /           %button{class: "btn btn-default", "data-dismiss" => "modal"} Close
+    %tr
+      - total_cost = @items.map(&:cost).sum
+      %td#total-cost-name Total Cost
+      %td
+      %td
+      %td
+      %td
+      %td#total-cost= total_cost 
+= paginate @items

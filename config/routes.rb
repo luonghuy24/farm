@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
+
   root 'home#index'
   devise_for :users
 
   resources :users
   resources :products
   resources :favorites
-
+  resources :orders
+  resources :items
+  resources :users do
+    resources :carts
+  end
   post '/users/new' => 'users#create', as: :create_user 
+  # get '/current_cart' => 'carts#show', as: :current_cart
+
+  get "*unmatched_route" => "errors#not_found"
+  get '/test' => 'home#test'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -62,4 +71,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

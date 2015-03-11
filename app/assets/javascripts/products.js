@@ -1,14 +1,15 @@
 // data = {user, product}
 $('document').ready(function() {
-	var user_email = $('.current-user-email').html();
+	var user_id = document.querySelector('.current-user-email').id
 
 	$('.favorite_product_unliked').click(function(){
 		var product_id = this.id;
 		$.ajax({
 			type: "POST",
-			url: "favorites",
-			data: { user_email: user_email, product_id: product_id }
+			url: "/favorites",
+			data: { user_id: user_id, product_id: product_id }
 		});
+
 		$(this).hide();
 		$('.' + product_id + '.favorite_product_liked').show();
 	});
@@ -20,7 +21,7 @@ $('document').ready(function() {
 		$.ajax({
 			type: "DELETE",
 			url: url,
-			data: { id: favorite_id }
+			data: { product_id: product_id }
 		});
 		$(this).hide();
 		$('.' + product_id + '.favorite_product_unliked').show();
@@ -28,7 +29,44 @@ $('document').ready(function() {
 
 
 	// -------------------------------------
-	$('.like-un-logged-in').click(function(){
+	$('.un-logged-in').click(function(){
 		alert('Please login to like this product');
+	});
+
+
+	$('.modal-product-quantity').change(function(){
+		var product_id = this.id;
+		var quantity = $(this).val();
+		var price = $('#'+product_id+'.modal-product-price').data("value");
+		var cost = price*quantity;
+		$("#"+product_id+'.modal-product-cost').val(cost);
+	});
+
+	$('.add_to_cart').click(function(){
+		var product_id = this.id;
+		var quantity = $('#'+product_id+'.modal-product-quantity').val()
+		var price = $('#'+product_id+'.modal-product-price').data("value");
+		var cost = quantity*price
+		$.ajax({
+			type: "POST",
+			url: "/users/"+user_id+"/carts",
+			data: { user_id: user_id, product_id: product_id, quantity: quantity, cost: cost }
+		});
+		$(this).hide();
+	});
+	$(".add-to-cart").click(function(){
+		var product_id = this.id
+		$("#add-to-cart-modal-box"+"_"+product_id).modal('show');
+	});
+
+	$(".delete_item").click(function(){
+		var item_id = this.id
+		$.ajax({
+			type: "DELETE",
+			url: "/items/"+item_id,
+			data: {item_id: item_id}
+		})
+    document.location.reload(); 
 	})
+
 });

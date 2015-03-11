@@ -5,7 +5,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :timeout_in => 30.minutes
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -30,7 +30,9 @@ class User
   enum :role, [:user, :vip, :admin]
 
   has_many :favorites
-
+  has_one :cart, autobuild: true
+  has_many :orders
+  has_many :items
   # after_initialize :set_default_role, :if => :new_record?
 
   # def set_default_role
@@ -46,7 +48,7 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
-	field :username,               type: String
+	field :username,           type: String
   field :gender,             type: String
   field :address,            type: String
   field :numberphone,        type: String
