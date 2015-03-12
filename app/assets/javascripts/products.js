@@ -53,7 +53,10 @@ $('document').ready(function() {
 			data: { user_id: user_id, product_id: product_id, quantity: quantity, cost: cost }
 		});
 		$(this).hide();
+		$("#"+product_id+'.add-to-cart').hide();
+		$("#"+product_id+".in-your-cart").show();
 	});
+	
 	$(".add-to-cart").click(function(){
 		var product_id = this.id
 		$("#add-to-cart-modal-box"+"_"+product_id).modal('show');

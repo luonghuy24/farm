@@ -11,9 +11,9 @@
     %th= "Cost"
     %th= "Action"
   %item_list
-    - @items.each_with_index do |item, index| 
+    - @items.each_with_index do |item, index|
       - product = item.product
-      %tr{id: product.id.to_s}
+      %tr{id: product.id}
         - if params[:page].to_i == 0
           %td#index= index+1
         - else

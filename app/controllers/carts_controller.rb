@@ -21,7 +21,6 @@ class CartsController < ApplicationController
 
 		user = User.find(params[:user_id])
 		product = Product.find(params[:product_id])
-
 		@item = Item.new(user: user, product: product, quantity: params[:quantity], cost: params[:cost])
 		@item.save
 		@item.product = product
