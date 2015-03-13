@@ -1,19 +1,17 @@
 $('document').ready(function() {
 	var user_id = document.querySelector('.current-user-email').id
-
-	$('.favorite_product_unliked').click(function(){
+	$(document).on('click', '.favorite_product_unliked', function(){
 		var product_id = this.id;
 		$.ajax({
 			type: "POST",
 			url: "/favorites",
 			data: { user_id: user_id, product_id: product_id }
 		});
-
 		$(this).hide();
 		$('.' + product_id + '.favorite_product_liked').show();
 	});
 
-	$('.favorite_product_liked').click(function(){
+	$(document).on('click', '.favorite_product_liked', function(){
 		var product_id = this.id;
 		var favorite_id = $(this).data('value')
 		var url = "/favorites/" + $(this).data('value')
@@ -25,7 +23,6 @@ $('document').ready(function() {
 		$(this).hide();
 		$('.' + product_id + '.favorite_product_unliked').show();
 	});
-
 
 	// -------------------------------------
 	$('.un-logged-in').click(function(){
@@ -56,7 +53,7 @@ $('document').ready(function() {
 		$("#"+product_id+'.add-to-cart').hide();
 		$("#"+product_id+".in-your-cart").show();
 	});
-	
+
 	$(".add-to-cart").click(function(){
 		var product_id = this.id
 		$("#add-to-cart-modal-box"+"_"+product_id).modal('show');
@@ -73,5 +70,7 @@ $('document').ready(function() {
 		var total_cost = $('#total-cost').html() - $("#"+product_id+'.edit-item-product-cost').val();
 		$("#total-cost").html(total_cost);
 	})
-
+	// $(".favorite_product_unliked").on("click", function(event) {
+ //  	console.log("link clicked");
+	// });
 });
