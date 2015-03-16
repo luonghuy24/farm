@@ -1,5 +1,6 @@
 $('document').ready(function() {
-	$('.edit-item-product-quantity').change(function(){
+	$(document).on('change', '.edit-item-product-quantity', function(){
+
 		var product_id = this.id;
 		var item_id = $("#"+product_id).data("value")
 		var quantity = $(this).val();
@@ -8,14 +9,12 @@ $('document').ready(function() {
 		var total_cost = $('#total-cost').html() - $("#"+product_id+'.edit-item-product-cost').val() + cost
 		$("#"+product_id+'.edit-item-product-cost').val(cost);
 		$("#total-cost").html(total_cost)
-		console.log(total_cost)
 		$.ajax ({
 			type: "PUT",
 			url: "/items/" + item_id,
 			data: {quantity: quantity, cost: cost}
 		});
 	});
-
 });
 
 

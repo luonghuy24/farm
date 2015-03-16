@@ -4,13 +4,21 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users
+  
   resources :products
+  
   resources :favorites
-  resources :orders
+  
+  resources :orders do
+    post 'save', on: :member
+  end
+
   resources :items
+  
   resources :users do
     resources :carts do
       post 'clear', on: :member
+      post 'save_to_order', on: :member
     end
   end
   post '/users/new' => 'users#create', as: :create_user 

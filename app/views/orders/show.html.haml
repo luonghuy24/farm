@@ -1,5 +1,5 @@
 %h1
-  Your Current Cart
+  Your Current Order
 = paginate @items
 %table.table.table-striped
   %tr
@@ -36,9 +36,10 @@
 = paginate @items
 %table.table.table-striped
   %tr
-    - total_cost = @cart.items.map(&:cost).sum
+    - total_cost = @order.items.map(&:cost).sum
     %td#total-cost-name.col-md-3 Total Cost
     %td.col-md-5
     %td#total-cost.col-md-1= total_cost
     %td.col-md-3
-%p{class: "btn btn-default"}= link_to "Edit", edit_user_cart_url(current_user, @cart) 
+%p{class: "btn btn-default"}= link_to "Back", edit_user_cart_url(current_user, current_user.cart) 
+%p{class: "btn btn-default save-order", id: @order.id, style:"float: right"} Save and Order

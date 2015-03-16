@@ -18,7 +18,6 @@ class CartsController < ApplicationController
 	end
 
 	def create
-
 		user = User.find(params[:user_id])
 		product = Product.find(params[:product_id])
 		@item = Item.new(user: user, product: product, quantity: params[:quantity], cost: params[:cost])
@@ -32,6 +31,8 @@ class CartsController < ApplicationController
 		else
 			@cart.items << @item
 		end
+		@cart.total_cost = @cart.items.map(&:cost).sum
+		@cart.save
 	end
 
 	def edit
@@ -39,6 +40,16 @@ class CartsController < ApplicationController
 		@items = @cart.items.page(params[:page])
 	end
 	
+	def save_to_order
+		@cart = Cart.find(params[:id])
+		order = Order.new
+		order.user = current_user
+		order.items = @cart.items
+		order.total_cost = @cart.total_cost
+		order.save
+		redirect_to order
+	end
+
 	def update
 	end
 
@@ -53,5 +64,4 @@ class CartsController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

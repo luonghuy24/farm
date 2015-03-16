@@ -40,5 +40,6 @@
     %td
     %td#total-cost= total_cost
     %td 
-%p{class: "btn btn-default"}= link_to "Save to Order", edit_user_cart_url(current_user, @cart) 
+%p{class: "btn btn-default"}= link_to "Save", edit_user_cart_url(current_user, @cart) 
 = link_to "Clear Cart", clear_user_cart_url(current_user,@cart), {class: "btn btn-danger",method: "post", data: {confirm: "Are You Sure?"}}
+= link_to "Save to order", save_to_order_user_cart_url(current_user,@cart), {class: "btn btn-success save-to-order",method: "post", data: {confirm: "Are You Sure?"}}
