@@ -4,7 +4,7 @@ class Order
   include Mongoid::Enum
 
   field :total_cost, type: Integer
-  enum :status, [:saved, :stand_by]
+  enum :status, [:saved, :pending], default: "pending"
 
   belongs_to :user
   has_many :items

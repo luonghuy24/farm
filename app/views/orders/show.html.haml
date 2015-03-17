@@ -9,7 +9,6 @@
     %th#price= "Price"
     %th#quantity= "Quantity"
     %th#cost= "Cost"
-    %th#thead-action= "Action"
   %item_list
     - @items.each_with_index do |item, index|
       - product = item.product
@@ -23,23 +22,12 @@
         %td#price.col-md-1= product.price
         %td#quantity.col-md-1= item.quantity
         %td#cost.col-md-1= item.cost
-        %td#action.col-md-3
-          = link_to "Show", product_url(product), {class: 'btn btn-primary'}
-          %p.delete_item{ class:"btn btn-danger", id: item.id } delete
-
-          - if Favorite.where(user: current_user, product: product).first.nil?
-            %p.favorite_product_unliked{class: "btn btn-warning #{product.id}", id: product.id} Like
-            %p.favorite_product_liked{class: "btn btn-info #{product.id}", id: product.id, style:'display: none'} Liked
-          -else
-            %p.favorite_product_unliked{class: "btn btn-warning #{product.id}",id: product.id, style: 'display: none'} Like
-            %p.favorite_product_liked{class: "btn btn-info #{product.id} ", id: product.id, "data-value": Favorite.where(user: current_user, product: product).first.id} Liked
 = paginate @items
 %table.table.table-striped
   %tr
     - total_cost = @order.items.map(&:cost).sum
     %td#total-cost-name.col-md-3 Total Cost
     %td.col-md-5
-    %td#total-cost.col-md-1= total_cost
-    %td.col-md-3
-%p{class: "btn btn-default"}= link_to "Back", edit_user_cart_url(current_user, current_user.cart) 
-%p{class: "btn btn-default save-order", id: @order.id, style:"float: right"} Save and Order
+    %td#total-cost.col-md-4= total_cost
+%p{class: "btn btn-default", method:"post"}= link_to "Back", back_to_edit_cart_order_url(@order) 
+%p{class: "btn btn-default", style:"float: right"} Payment

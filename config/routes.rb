@@ -10,22 +10,22 @@ Rails.application.routes.draw do
   resources :favorites
   
   resources :orders do
-    post 'save', on: :member
+    get 'back_to_edit_cart', on: :member
   end
 
   resources :items
   
   resources :users do
     resources :carts do
-      post 'clear', on: :member
+      get 'clear', on: :member
       post 'save_to_order', on: :member
     end
   end
   post '/users/new' => 'users#create', as: :create_user 
   # get '/current_cart' => 'carts#show', as: :current_cart
 
+  get '/test'  => 'home#test'
   get "*unmatched_route" => "errors#not_found"
-  get '/test' => 'home#test'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

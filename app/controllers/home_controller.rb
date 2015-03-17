@@ -6,4 +6,7 @@ class HomeController < ApplicationController
   	user = current_user
   	cart = user.cart
   end
+  def test
+  	
+  end
 end

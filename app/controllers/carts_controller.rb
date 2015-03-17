@@ -11,6 +11,8 @@ class CartsController < ApplicationController
 		@cart.items = []
 		@cart.total_cost = 0
 		@cart.save
+		redirect_to root_path
+    flash[:success] = "Cleared Cart."
 	end
 
 	def new
@@ -46,6 +48,7 @@ class CartsController < ApplicationController
 		order.user = current_user
 		order.items = @cart.items
 		order.total_cost = @cart.total_cost
+		order.status = "pending"
 		order.save
 		redirect_to order
 	end

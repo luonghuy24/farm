@@ -1,18 +1,19 @@
 class OrdersController < ApplicationController
+	
 	def show
 		@order = Order.find(params[:id])
 		@items = @order.items.page(params[:page])
 	end
 
-	def save
+	def back_to_edit_cart
 		@order = Order.find(params[:id])
-		@order.status = "saved"
-		@order.user.cart.items.delete_all
-		@order.save
+		redirect_to edit_user_cart_url(current_user, current_user.cart)
+	end
+	
+	def index
+		@orders = current_user.orders
 	end
 
-	def index
-	end
 	def new
 	end
 	def create
@@ -23,4 +24,5 @@ class OrdersController < ApplicationController
 	end
 	def destroy
 	end
+	
 end
