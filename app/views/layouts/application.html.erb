@@ -4,15 +4,24 @@
   <title>Farm</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<div class='container'>
-		<%= render "layouts/topbar1" %>
-		<% flash.each do |message_type, message| %>
+    <%= render "layouts/topbar1" %>
+    <% flash.each do |message_type, message| %>
   	 <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
-    <%= yield %>
+    <div class='container'>
+      <%= render "layouts/left_bar" %>
+      <div class='col-md-9'>
+        <div class='main-content'>
+         <%= yield %>
+        </div>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>

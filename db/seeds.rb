@@ -8,5 +8,10 @@
 
 puts "** seed 20 users **"
 	20.times { Fabricate(:user) }
+puts "** create admin **"
+	u = User.create(username: "admin", email: "admin@admin.com", password: "12345678", role: "admin")
 puts "** seed 20 products **"
 	20.times { Fabricate(:product) }
+
+puts "** create 10 articles **"
+	10.times { Fabricate(:article) }

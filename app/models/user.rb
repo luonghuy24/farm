@@ -31,6 +31,8 @@ class User
 
   has_many :favorites
   has_one :cart, autobuild: true
+  accepts_nested_attributes_for :cart
+
   has_many :orders
   has_many :items
   # after_initialize :set_default_role, :if => :new_record?

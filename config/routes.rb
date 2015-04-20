@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'home#test'
+  mount Ckeditor::Engine => '/ckeditor'
+  root 'home#index'
   devise_for :users
 
   resources :users
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
   resources :products
   
   resources :favorites
+
+  resources :articles
   
   resources :orders do
     get 'back_to_edit_cart', on: :member
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
   # get '/current_cart' => 'carts#show', as: :current_cart
 
   get '/test'  => 'home#test'
+  get '/search' => "products#search"
   get "*unmatched_route" => "errors#not_found"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -37,7 +37,7 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'cancancan', '~> 1.10'
 gem "mongoid-enum"
-
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 
 

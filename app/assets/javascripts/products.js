@@ -42,6 +42,7 @@ $('document').ready(function() {
 
 	$('.add_to_cart').click(function(){
 		var product_id = this.id;
+		var user_id = document.querySelector('.current-user-email').id
 		var quantity = $('#'+product_id+'.modal-product-quantity').val()
 		var price = $('#'+product_id+'.modal-product-price').data("value");
 		var cost = quantity*price

@@ -1,4 +1,12 @@
-.col-md-4
-.col-md-4
-	#datepicker
-.col-md-4
+= render "carousel"
+- Product.all.flat_map(&:type).uniq.take(3).each do |type|
+	.product-list-by-type
+		%span.pl-header=link_to type.mb_chars.upcase.to_s, "/products?search=#{type}"
+		.pl-body.row
+			#pl-bd-product
+				- Product.where(type: type).take(4).each do |product|
+					.col-md-3.product-box
+						#product-image=link_to image_tag(product.image.thumb.url), product_url(product)
+						#product-name=link_to product.product_name, product_url(product)
+						#product-price= product.price.to_s + '.000đ'
+

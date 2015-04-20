@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all.asc(:product_name).page(params[:page])
+    if params[:search].nil?
+      @products = Product.all.asc(:product_name).page(params[:page])
+    else
+      @products = Product.all.where(type: params[:search]).asc(:product_name).page(params[:page])
+    end
   end
 
   def show
@@ -14,7 +18,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:message] = 'Created new product successful'
+      flash[:message] = 'Created new product successfully'
       redirect_to products_url
     else
       render 'new'
@@ -35,6 +39,5 @@ class ProductsController < ApplicationController
   private
     def product_params
       params.require(:product).permit(:product_name, :product_code, :description, :price)
-      
     end
 end

@@ -17,4 +17,5 @@
 //= require bootstrap-sprockets
 //= require jquery-ui
 //= require jquery-ui.min
+//= require ckeditor/init
 //= require_tree .

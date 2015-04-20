@@ -1,0 +1,5 @@
+- @articles.each do |art|
+	= raw(art.description)
+	%br
+	= image_tag(art.photo.thumb.url)
+	%br
