@@ -19,7 +19,7 @@
 	.hot-products
 		%span
 			SẢN PHẨM MỚI
-		-Product.all[-3..-1].reverse.each do |product|
+		-Product.all[-4..-1].reverse.each do |product|
 			#product-block.row
 				#p-photo.col-md-4= image_tag(product.image.small_thumb.url)
 				#p-body.col-md-8
