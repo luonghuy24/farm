@@ -1,6 +1,5 @@
 body
 	font-family: 'Alegreya Sans', sans-serif !important
-
 .container
 	padding-left: 0 !important
 	padding-right: 0 !important
@@ -9,17 +8,17 @@ body
 	padding-right: 0
 	margin-top: 50px
 	border: 1px solid #E7ECDE
-	-webkit-box-shadow: 0 0 10px #fff
+	-webkit-box-shadow: 0 0 10px #E4EDE7
 	padding-top: 20px
 	padding-bottom: 20px
 	span
-		font-size: 20px
 		padding-left: 20px
 		background: #77AE11
 		margin-top: -20px
 		padding-top: 5px
 		padding-bottom: 5px
 		display: block
+		color: white
 	ul
 		list-style: none
 		padding-left: 20px
@@ -32,6 +31,15 @@ body
 				font-size: 20px
 				color: #787878
 				padding-left: 10px
+			.hover-class
+				display: none
+				position: absolute
+				margin-left: 100%
+				z-index: 1
+				margin-top: -56px
+			a:hover + div
+				display: block
+				
 		li:first-child
 			border-top: 0
 		li:hover
@@ -46,3 +54,23 @@ body
 .main-content
 	.product-list-by-type
 		padding-bottom: 30px
+#map-canvas
+	width: 100%
+	height: 400px
+.layouts_footer
+	.container
+		.gmaps
+			background: rgba(238, 238, 238, 0.5)
+			padding-top: 15px
+			padding-bottom: 15px
+			margin-bottom: 50px
+			.row
+				.col-md-6
+					ul
+						margin-left: -30px
+						list-style: none
+						li
+							font-size: 18px
+						li:first-child
+							font-size: 30px
+							margin-left: -10px

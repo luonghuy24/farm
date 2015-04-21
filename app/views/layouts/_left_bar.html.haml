@@ -4,6 +4,8 @@
 		- Product.all.flat_map(&:type).uniq.each do |type|
 			%li{id: "#{type}"}
 				=link_to type.capitalize, "/products?search=#{type}"
+				.hover-class{id: "#{type}"}
+					%span type
 	.news-col
 		%span
 			TIN NỔI BẬT
@@ -13,3 +15,13 @@
 				#art-body.col-md-8
 					#art-title=link_to article.title[0..50], article_url(article)
 					#art-description= article.description[0..70] + '...'
+
+	.hot-products
+		%span
+			SẢN PHẨM MỚI
+		-Product.all[-3..-1].reverse.each do |product|
+			#product-block.row
+				#p-photo.col-md-4= image_tag(product.image.small_thumb.url)
+				#p-body.col-md-8
+					#p-name=link_to product.product_name[0..50], product_url(product)
+					#p-price= product.price.to_s + '.000đ'

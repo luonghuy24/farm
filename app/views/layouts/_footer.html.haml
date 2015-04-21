@@ -1,6 +1,32 @@
-.top-bar1.container
-  .top-bar1-left
-    %a{ :href => root_path } 
-      =image_tag ('logo.png')
-  
-
+.layouts_footer
+	.container
+		.gmaps
+			.row
+				.col-md-6
+					= render "layouts/map", :locals => { :organizations => [@organization] }
+				.col-md-6
+					%ul
+						%li#map-span-1	Công ty ABCDEFGH...
+						%li#map-span-2	Tên giao dịch...
+						%li#map-span-3	Địa chỉ...
+						%li#map-span-4	Số điện thoại...
+						%li#map-span-5	Website...
+						%li#map-span-6	Hỗ trợ...
+		.footer-2
+			.row
+				.col-md-4#footer-small-col
+					%span#head-info Thông tin
+					%ul
+						%li Về chúng tôi
+						%li Dịch vụ
+						%li Chính sách bảo mật
+						%li Bản đồ site
+				.col-md-4#footer-small-col
+					%span#head-info Chăm sóc khách hàng
+					%ul
+						%li Liên hệ
+						%li Hướng dẫn mua hàng
+						%li Phương thức thanh toán
+						%li Câu hỏi thường gặp		
+				.col-md-4#footer-small-col
+					%span#head-info Chia sẻ
