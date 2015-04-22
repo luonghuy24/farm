@@ -1,5 +1,14 @@
 $('document').ready(function() {
-  $("#datepicker").datepicker();
+  // $("#datepicker").datepicker();
+  $('.top-of-site li ul').hide().removeClass('fallback');
+  $('.top-of-site li').hover(
+    function () {
+      $('ul', this).stop().slideDown(100);
+    },
+    function () {
+      $('ul', this).stop().slideUp(100);
+    }
+  );
 });
 function initialize() {
   var mapCanvas = document.getElementById('map-canvas');
@@ -22,7 +31,7 @@ initAdthis = function(){
     window.addthis_share = null;
  
     // Finally, load addthis
-    $.getScript("s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553614e2730d2725");
+    // $.getScript("s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553614e2730d2725");
 }
  
 // Trigger the function on both jquery's ready event and turbolinks page:change event
@@ -30,3 +39,5 @@ $(document).on('page:change', function(){
 	initialize();
   initAdthis();
 })
+
+

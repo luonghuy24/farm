@@ -28,8 +28,11 @@ Rails.application.routes.draw do
   # get '/current_cart' => 'carts#show', as: :current_cart
 
   get '/test'  => 'home#test'
+  get '/about'  => 'home#about'
+
   get '/search' => "products#search"
   get "*unmatched_route" => "errors#not_found"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

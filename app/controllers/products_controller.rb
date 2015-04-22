@@ -30,6 +30,17 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def update
+    @product = Product.find(params[:id])  
+    @product.update_attributes(product_params)
+    if @product.save
+      flash[:message] = 'Created new product successfully'
+      redirect_to products_url
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     Product.find(params[:id]).destroy
     flash[:success] = "Product deleted"

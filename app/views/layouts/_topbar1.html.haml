@@ -1,3 +1,6 @@
+
+
+
 .top-bar1.container
 	.top-bar1-left
 		%a{ :href	=> root_path } 
@@ -19,3 +22,28 @@
 			%p= link_to "Sign in", new_user_session_url
 			%p= link_to "Sign up", new_user_registration_url
 			
+.top-of-site
+	%ul
+		%li
+			= link_to "TRANG CHỦ", '#'
+		%li
+			= link_to "VỀ CHÚNG TÔI", '#'
+			%ul.fallback
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+		%li
+			= link_to 'KHUYẾN MẠI', '#'
+			%ul.fallback
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+		%li
+			= link_to 'LIÊN HỆ', '#'
+			%ul.fallback
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
+				%li= link_to 'ABCABC', '#'
