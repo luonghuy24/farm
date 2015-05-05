@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def about
-  	
+		render layout: 'no_layout'  	
   end
 
   def test

@@ -41,7 +41,6 @@ initAdthis = function(){
     // Finally, load addthis
     // $.getScript("s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553614e2730d2725");
 }
- 
 // Trigger the function on both jquery's ready event and turbolinks page:change event
 $(document).on('page:change', function(){
 	initialize();

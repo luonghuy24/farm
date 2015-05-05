@@ -5,7 +5,7 @@
 		.pl-body.row
 			#pl-bd-product
 				- Product.where(type: type).take(4).each do |product|
-					.col-md-3.product-box
+					.col-md-3.col-xs-6.product-box
 						#product-image=link_to image_tag(product.image.thumb.url), product_url(product)
 						#product-name=link_to product.product_name, product_url(product)
 						#product-price= product.price.to_s + '.000đ'
