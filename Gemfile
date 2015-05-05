@@ -39,6 +39,7 @@ gem 'cancancan', '~> 1.10'
 gem "mongoid-enum"
 gem 'ckeditor', github: 'galetahub/ckeditor'
 
+gem 'rails_admin'
 
 
 # Use ActiveModel has_secure_password

@@ -1,24 +1,20 @@
 .col-md-3.navi-left
-	%span DANH MỤC SẢN PHẨM
+	%span=link_to 'DANH MỤC SẢN PHẨM', products_url
 	%ul#product-list
 		- Product.all.flat_map(&:type).uniq.each do |type|
 			%li{id: "#{type}"}
 				=link_to type.capitalize, "/products?search=#{type}"
-				.hover-class{id: "#{type}"}
-					%span type
+	%span=link_to 'TIN NỔI BẬT', articles_url
 	.news-col
-		%span
-			TIN NỔI BẬT
+		
 		- Article.all[-5..-1].reverse.each do |article|
 			#article-block.row
 				#art-photo.col-md-4= image_tag(article.photo.small_thumb.url)
 				#art-body.col-md-8
 					#art-title=link_to article.title[0..50], article_url(article)
 					#art-description= article.description[0..70] + '...'
-
+	%span=link_to 'SẢN PHẨM MỚI', products_url
 	.hot-products
-		%span
-			SẢN PHẨM MỚI
 		-Product.all[-4..-1].reverse.each do |product|
 			#product-block.row
 				#p-photo.col-md-4= image_tag(product.image.small_thumb.url)
