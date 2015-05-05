@@ -11,13 +11,21 @@ $('document').ready(function() {
   );
 });
 function initialize() {
-  var mapCanvas = document.getElementById('map-canvas');
   var mapOptions = {
-    center: new google.maps.LatLng(40.861396, -73.765823),
-    zoom: 11,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  var map = new google.maps.Map(mapCanvas, mapOptions)
+    center: new google.maps.LatLng(21.030686,105.852403),
+    zoom: 15
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  marker = new google.maps.Marker({
+    map: map,
+    position: new google.maps.LatLng(21.030686,105.852403)
+  });
+  infowindow = new google.maps.InfoWindow({content:"<b>Hồ Gươm</b><br/>Hồ Con Rùa<br/> Hà Nội" });
+  google.maps.event.addListener(marker, "click", function(){
+    infowindow.open(map,marker);
+  });
+  infowindow.open(map,marker);
 }
 
 var initAdthis;
