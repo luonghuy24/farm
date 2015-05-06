@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
   post '/users/new' => 'users#create', as: :create_user 
-  # get '/current_cart' => 'carts#show', as: :current_cart
+  match '/deliver_contact_form' => 'application#deliver_contact_form', :via => :post
 
   get '/test'  => 'home#test'
   get '/about'  => 'home#about'

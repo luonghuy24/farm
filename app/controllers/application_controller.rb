@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
 		current_cart = Cart.find_or_create_by(user: current_user)
 		current_cart.items = nil
 	end
+  
+  def deliver_contact_form
+    ContactMailer.contact_email(params).deliver     
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
+  end
 end
