@@ -1,3 +1,8 @@
+
+
+
+.about#logo
+	=link_to image_tag('logo.png'), root_path
 .container.box-3w.who-we-are
 	.row.span12
 		%h3.indent-1.center CHÚNG TÔI LÀ AI
@@ -61,11 +66,11 @@
 		.col-md-3.col-xs-6
 			%img{:alt => "", :src => "assets/page2-img4.png"}/
 
-#courses-banner-large
+.about#courses-banner-large
 	.container
 		.row
-			.col-md-3
-			.col-md-6.banner-info
+			.col-md-4
+			.col-md-4.banner-info
 				%h3 Have Questions or Need a Quote?
 				%p
 					Send us a message with all your enquiries and questions and we'll get in touch with you with some answers within the next 24 hours
@@ -75,5 +80,4 @@
 						= f.input :message, placeholder: 'Message', label: false, as: :text, input_html: {cols: 15, rows: 6, :required => ""}, class: 'radius'
 						= f.submit 'Submit', class: 'btn btn-default'
 					%div{:style => "clear: both;"}
-
-			.col-md-3
+			.col-md-4
