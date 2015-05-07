@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Farm</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
-  <style>
-      #map-canvas {
-      }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <%= csrf_meta_tags %>
+	<title>Farm</title>
+	<%= stylesheet_link_tag    'application', media: 'all' %>
+	<%= javascript_include_tag 'application' %>
+	<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<style>
+			#map-canvas {
+			}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553614e2730d2725" async="async"></script>
-    <%= yield %>
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553614e2730d2725" async="async"></script>
+		<% flash.each do |message_type, message| %>
+		 <div class="alert alert-<%= message_type %>"><%= message %></div>
+		<% end %>    
+		<%= yield %>
 </body>
 </html>

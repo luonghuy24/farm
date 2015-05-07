@@ -1,6 +1,3 @@
-
-
-
 .about#logo
 	=link_to image_tag('logo.png'), root_path
 .container.box-3w.who-we-are
@@ -69,15 +66,19 @@
 .about#courses-banner-large
 	.container
 		.row
-			.col-md-4
-			.col-md-4.banner-info
+			.col-md-4.col-xs-2
+			.col-md-4.col-xs-8.banner-info
 				%h3 Have Questions or Need a Quote?
 				%p
 					Send us a message with all your enquiries and questions and we'll get in touch with you with some answers within the next 24 hours
 				#contact-area
 					= simple_form_for :contact, url: '/deliver_contact_form', html: { class: 'form-horizontal', novalidate: false } do |f|
+						- random1 = (1 .. 10).to_a.sample
+						- random2 = (1 .. 10).to_a.sample
 						= f.input :email, placeholder: 'Email', label: false, input_html: {class: 'radius', :required => ""}
 						= f.input :message, placeholder: 'Message', label: false, as: :text, input_html: {cols: 15, rows: 6, :required => ""}, class: 'radius'
-						= f.submit 'Submit', class: 'btn btn-default'
+						.g-recaptcha{"data-sitekey" => "6LdHggYTAAAAANXA0FBxHdZ9PxYO1ayYD2PjvaVI"}
+						= f.submit 'Submit', class: 'btn btn-default contact-form-submit'
+						= recaptcha_tags
 					%div{:style => "clear: both;"}
-			.col-md-4
+			.col-md-4.col-xs-2

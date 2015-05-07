@@ -13,9 +13,15 @@ class ApplicationController < ActionController::Base
 	end
   
   def deliver_contact_form
-    ContactMailer.contact_email(params).deliver     
-    respond_to do |format|
-      format.html { redirect_to root_path }
+    captcha_message = "The data you entered for the CAPTCHA wasn't correct.  Please try again"
+    if verify_recaptcha()
+      ContactMailer.contact_email(params).deliver     
+      respond_to do |format|
+        format.html { redirect_to root_path }
+      end
+    else
+      redirect_to '/about'
+      flash[:danger] = captcha_message
     end
   end
 end

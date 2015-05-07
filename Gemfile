@@ -38,7 +38,7 @@ gem 'kaminari'
 gem 'cancancan', '~> 1.10'
 gem "mongoid-enum"
 gem 'ckeditor', github: 'galetahub/ckeditor'
-
+gem "recaptcha", :require => "recaptcha/rails"
 gem 'rails_admin'
 
 
