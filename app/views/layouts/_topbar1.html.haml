@@ -1,49 +1,33 @@
-
-
-
-.top-bar1.container
-	.top-bar1-left
-		%a{ :href	=> root_path } 
-			=image_tag ('logo.png')
-	.top-bar1-right
-		- if user_signed_in?
-			- current_cart = current_user.cart			
-			.cart-icon= link_to image_tag("cart.png"), user_cart_url(current_user,current_cart)
-			.top-bar1-right-dropdown.dropdown
-				%a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
-					%p.current-user-email{id: "#{current_user.id}"}= current_user.email
-				%ul.dropdown-menu{"role" => "menu"}
-					%li
-						%p= link_to "show", user_url(current_user)
-						%p= link_to "edit", edit_user_url(current_user)
-						%p= link_to "Sign out", destroy_user_session_url, :method => :delete
-			
-		- else
-			%p= link_to "Sign in", new_user_session_url
-			%p= link_to "Sign up", new_user_registration_url
-			
-.top-of-site
-	%ul
-		%li
-			= link_to "TRANG CHỦ", '#'
-		%li
-			= link_to "VỀ CHÚNG TÔI", '#'
-			%ul.fallback
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-		%li
-			= link_to 'KHUYẾN MẠI', '#'
-			%ul.fallback
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-		%li
-			= link_to 'LIÊN HỆ', '#'
-			%ul.fallback
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
-				%li= link_to 'ABCABC', '#'
+%nav.navbar.navbar-default.navbar-fixed-top
+	.container
+		.navbar-header
+			%button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+				%span.sr-only Toggle navigation
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar
+			%a.navbar-brand{ :href	=> root_path } HAI DANG FARM
+		#navbar.navbar-collapse.collapse
+			%ul.nav.navbar-nav
+				%li
+					%a{:href => root_path} Home
+				%li
+					%a{:href => "/about"} About
+				%li
+					%a{:href => "/about"} Contact
+			%ul.nav.navbar-nav.navbar-right
+				- if user_signed_in?
+					- current_cart = current_user.cart			
+					.cart-icon= link_to image_tag("cart.png"), user_cart_url(current_user,current_cart)
+					.top-bar1-right-dropdown.dropdown
+						%a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+							%p.current-user-email{id: "#{current_user.id}"}= current_user.email
+						%ul.dropdown-menu{"role" => "menu"}
+							%li
+								%p= link_to "show", user_url(current_user)
+								%p= link_to "edit", edit_user_url(current_user)
+								%p= link_to "Sign out", destroy_user_session_url, :method => :delete
+					
+				- else
+					%p= link_to "Sign in", new_user_session_url
+					%p= link_to "Sign up", new_user_registration_url
