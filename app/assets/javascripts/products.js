@@ -68,11 +68,41 @@ $('document').ready(function() {
 			url: "/items/"+item_id,
 			data: {item_id: item_id}
 		})
-    document.location.reload();
+		document.location.reload();
 		var total_cost = $('#total-cost').html() - $("#"+product_id+'.edit-item-product-cost').val();
 		$("#total-cost").html(total_cost);
 	})
 	// $(".favorite_product_unliked").on("click", function(event) {
  //  	console.log("link clicked");
 	// });
+
+	;( function( $, window, document, undefined )
+		{
+				'use strict';
+				var $list       = $( '#pl-bd-product' ),
+						$items      = $list.find( '.product-box' ),
+						setHeights  = function()
+						{
+								$items.css( 'height', 'auto' );
+								var perRow = Math.floor( $list.width() / $items.width() );
+								if( perRow == null || perRow < 2 ) return true;
+								for( var i = 0, j = $items.length; i < j; i += perRow )
+								{
+										var maxHeight   = 0,
+												$row        = $items.slice( i, i + perRow );
+										$row.each( function()
+										{
+												var itemHeight = parseInt( $( this ).outerHeight() );
+												if ( itemHeight > maxHeight ) maxHeight = itemHeight;
+										});
+										$row.css( 'height', maxHeight );
+								}
+						};
+				setHeights();
+				$( window ).on( 'resize', setHeights );
+	})( jQuery, window, document );
+
+
+
 });
+

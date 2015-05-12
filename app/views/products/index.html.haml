@@ -1,68 +1,89 @@
-%h1
-  Products List
-= paginate @products
-%table.table.table-striped
-  %tr
-    %th= "#"
-    %th= "Product name"
-    %th= "Product code"
-    %th= "Price"
-    %th= "Action"
-  %product_list
-    - @products.each_with_index do |product, index| 
-      %tr{id: product.id}
-        - if params[:page].to_i == 0
-          %td#index= index+1
-        - else
-          %td#index= index+1 + 10*(params[:page].to_i-1)
-        %td#name= product.product_name
-        %td#code= product.product_code
-        %td#price= product.price
-        %td
-          = link_to "Show", product_url(product), {class: 'btn btn-success'}
+- if @numbers_type == 99
+  - @type.each do |type|
+    .product-list-by-type
+      %span.pl-header=link_to type.mb_chars.upcase.to_s, "/products?search=#{type}"
+      .pl-body.row
+        #pl-bd-product
+          - Product.where(type: type).take(4).each do |product|
+            .col-md-3.col-xs-6.product-box
+              #product-image=link_to image_tag(product.image.thumb.url), product_url(product)
+              #product-name=link_to product.product_name, product_url(product)
+              #product-price= product.price.to_s + '.000đ'
+- if @numbers_type == 1
+  .product-list-by-type
+    %span.pl-header=link_to @type.mb_chars.upcase.to_s, "#"
+    .pl-body.row
+      %ul#pl-bd-product
+        - @products.each do |product|
+          %li.col-md-3.col-xs-6.product-box
+            #product-image=link_to image_tag(product.image.thumb.url), product_url(product)
+            #product-name=link_to product.product_name, product_url(product)
+            #product-price= product.price.to_s + '.000đ'
+/ %h1
+/   Products List
+/ = paginate @products
+/ %table.table.table-striped
+/   %tr
+/     %th= "#"
+/     %th= "Product name"
+/     %th= "Product code"
+/     %th= "Price"
+/     %th= "Action"
+/   %product_list
+/     - @products.each_with_index do |product, index| 
+/       %tr{id: product.id}
+/         - if params[:page].to_i == 0
+/           %td#index= index+1
+/         - else
+/           %td#index= index+1 + 10*(params[:page].to_i-1)
+/         %td#name= product.product_name
+/         %td#code= product.product_code
+/         %td#price= product.price
+/         %td
+/           = link_to "Show", product_url(product), {class: 'btn btn-success'}
 
-          - if can? :edit, :delete, product
-            = link_to "Edit", edit_product_url(product), {class: 'btn btn-primary'}
-            = link_to "Delete", product_url(product), {method: 'delete', data: { confirm: "You sure?" }, class: 'btn btn-danger' }
-          - if current_user.nil?
-            %p.un-logged-in{class: 'btn btn-warning'} Like
-            %p.un-logged-in{class: 'btn btn-warning'} Add to cart
-          - else
-            / like/unlike button------------
-            - if Favorite.where(user: current_user, product: product).first.nil?
-              %p.favorite_product_unliked{class: "btn btn-warning #{product.id}", id: product.id} Like
-              %p.favorite_product_liked{class: "btn btn-info #{product.id}", id: product.id, style:'display: none'} Liked
-            -else
-              %p.favorite_product_unliked{class: "btn btn-warning #{product.id}",id: product.id, style: 'display: none'} Like
-              %p.favorite_product_liked{class: "btn btn-info #{product.id} ", id: product.id, "data-value": Favorite.where(user: current_user, product: product).first.id} Liked
-            /add-to-cart button--------------
-            / %p.add_to_cart{class: "btn btn-warning #{product.id}", id: product.id} Add to cart
-            .add-to-cart-modal
-              - if !current_user.cart.items.map(&:product).include?(product)
-                %p.add-to-cart{class: "btn btn-md btn-primary", id: product.id} Add to cart
-                #add-to-cart-modal-box.modal.fade{id: product.id}
-                  .modal-dialog 
-                    .modal-content
-                      %table.table.table-striped
-                        %tr
-                          %th Product Name
-                          %th Quantity
-                          %th Price
-                          %th Currency
-                          %th Cost
-                        %tr
-                          %td#modal-product-name= product.product_name
-                          %td
-                            %input.modal-product-quantity{ type: "integer", "value": 1, id: product.id}
-                          %td{class: "modal-product-price", id: product.id, "data-value": product.price}= product.price
-                          %td#modal-product-currency VND
-                          %td
-                            %input{class: 'modal-product-cost', id: product.id, "value": product.price, disabled: true}
-                      %p.add_to_cart{class: "btn btn-warning #{product.id}", id: product.id} Add to cart
-                      %button{class: "btn btn-default", "data-dismiss" => "modal"} Close
-                = link_to "In your cart",user_cart_url(current_user, current_user.cart), {class: "btn btn-default in-your-cart", id: product.id, style: "display: none"}
+/           - if can? :edit, :delete, product
+/             = link_to "Edit", edit_product_url(product), {class: 'btn btn-primary'}
+/             = link_to "Delete", product_url(product), {method: 'delete', data: { confirm: "You sure?" }, class: 'btn btn-danger' }
+/           - if current_user.nil?
+/             %p.un-logged-in{class: 'btn btn-warning'} Like
+/             %p.un-logged-in{class: 'btn btn-warning'} Add to cart
+/           - else
+/             / like/unlike button------------
+/             - if Favorite.where(user: current_user, product: product).first.nil?
+/               %p.favorite_product_unliked{class: "btn btn-warning #{product.id}", id: product.id} Like
+/               %p.favorite_product_liked{class: "btn btn-info #{product.id}", id: product.id, style:'display: none'} Liked
+/             -else
+/               %p.favorite_product_unliked{class: "btn btn-warning #{product.id}",id: product.id, style: 'display: none'} Like
+/               %p.favorite_product_liked{class: "btn btn-info #{product.id} ", id: product.id, "data-value": Favorite.where(user: current_user, product: product).first.id} Liked
+/             /add-to-cart button--------------
+/             / %p.add_to_cart{class: "btn btn-warning #{product.id}", id: product.id} Add to cart
+/             .add-to-cart-modal
+/               - if !current_user.cart.items.map(&:product).include?(product)
+/                 %p.add-to-cart{class: "btn btn-md btn-primary", id: product.id} Add to cart
+/                 #add-to-cart-modal-box.modal.fade{id: product.id}
+/                   .modal-dialog 
+/                     .modal-content
+/                       %table.table.table-striped
+/                         %tr
+/                           %th Product Name
+/                           %th Quantity
+/                           %th Price
+/                           %th Currency
+/                           %th Cost
+/                         %tr
+/                           %td#modal-product-name= product.product_name
+/                           %td
+/                             %input.modal-product-quantity{ type: "integer", "value": 1, id: product.id}
+/                           %td{class: "modal-product-price", id: product.id, "data-value": product.price}= product.price
+/                           %td#modal-product-currency VND
+/                           %td
+/                             %input{class: 'modal-product-cost', id: product.id, "value": product.price, disabled: true}
+/                       %p.add_to_cart{class: "btn btn-warning #{product.id}", id: product.id} Add to cart
+/                       %button{class: "btn btn-default", "data-dismiss" => "modal"} Close
+/                 = link_to "In your cart",user_cart_url(current_user, current_user.cart), {class: "btn btn-default in-your-cart", id: product.id, style: "display: none"}
 
-              - else
-                = link_to "In your cart",user_cart_url(current_user, current_user.cart), {class: "btn btn-default in-your-cart", id: product.id}
-%p#new= link_to "Create new", new_product_url , {class: 'btn btn-success'}
-= paginate @products
+/               - else
+/                 = link_to "In your cart",user_cart_url(current_user, current_user.cart), {class: "btn btn-default in-your-cart", id: product.id}
+/ %p#new= link_to "Create new", new_product_url , {class: 'btn btn-success'}
+/ = paginate @products

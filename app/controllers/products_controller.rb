@@ -2,8 +2,12 @@ class ProductsController < ApplicationController
   def index
     if params[:search].nil?
       @products = Product.all.asc(:product_name).page(params[:page])
+      @type = @products.flat_map(&:type).uniq
+      @numbers_type = 99
     else
       @products = Product.all.where(type: params[:search]).asc(:product_name).page(params[:page])
+      @type = params[:search]
+      @numbers_type = 1
     end
   end
 
