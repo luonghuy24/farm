@@ -41,8 +41,10 @@ gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'rails_admin'
 
-gem 'capistrano',  '~> 3.1'
-gem 'capistrano-rails', '~> 1.1'
+gem 'capistrano', require: false
+gem 'capistrano-ext', require: false
+gem 'capistrano_colors', require: false
+gem 'rvm-capistrano', require: false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
