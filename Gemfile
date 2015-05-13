@@ -40,11 +40,7 @@ gem "mongoid-enum"
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'rails_admin'
-
-gem 'capistrano', require: false
-gem 'capistrano-ext', require: false
-gem 'capistrano_colors', require: false
-gem 'rvm-capistrano', require: false
+gem 'therubyracer'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -57,6 +53,13 @@ gem 'rvm-capistrano', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+	gem 'capistrano', '~> 3.1.0'
+  # cap tasks to manage puma application server
+  gem 'capistrano-puma', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-rvm',   '~> 0.1', require: false
+  
   gem 'letter_opener'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
