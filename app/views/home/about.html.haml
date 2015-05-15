@@ -79,7 +79,7 @@
 						- random2 = (1 .. 10).to_a.sample
 						= f.input :email, placeholder: 'Email', label: false, input_html: {class: 'radius', :required => ""}
 						= f.input :message, placeholder: 'Message', label: false, as: :text, input_html: {cols: 15, rows: 6, :required => ""}, class: 'radius'
-						.g-recaptcha{"data-sitekey" => "6LdHggYTAAAAANXA0FBxHdZ9PxYO1ayYD2PjvaVI"}
+						.g-recaptcha{"data-sitekey" => "6Ld76gYTAAAAAJsQF0EQzXpd3cYHPAMpqaPhJeJI"}
 						= f.submit 'Submit', class: 'btn btn-default contact-form-submit'
 						= recaptcha_tags
 					%div{:style => "clear: both;"}
