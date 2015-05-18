@@ -46,7 +46,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.full_text_search(params[:keywords], match: :any).asc(:product_name)
+    if params[:keywords].present?
+      @products = Product.full_text_search(params[:keywords], match: :any).asc(:product_name)
+    else
+      @products = []
+    end
   end
 
   def destroy

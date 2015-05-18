@@ -21,6 +21,6 @@ class Product
 	has_many :favorites
 	belongs_to :item
 	
-	search_in :product_code, :product_name, :type_array, :standard, :description 
+	search_in :product_code, :product_name, :type, :standard, :description 
 
 end
