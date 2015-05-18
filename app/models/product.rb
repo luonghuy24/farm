@@ -1,6 +1,6 @@
 class Product
 	include Mongoid::Document
-  include Mongoid::Search
+	include Mongoid::Search
 	validates_presence_of :product_name, :product_code, :description, :price
 
 	field :product_name,			type: String
