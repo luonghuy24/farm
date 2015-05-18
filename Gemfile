@@ -24,7 +24,7 @@ gem 'jquery-turbolinks'
 gem 'compass'
 
 gem 'mongoid', github: "mongoid/mongoid"
-gem 'mongoid_search', github: 'mauriciozaffari/mongoid_search', branch: 'master'
+gem 'mongoid_search'
 gem 'pry'
 gem 'haml'
 gem "haml-rails"

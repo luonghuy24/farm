@@ -7,15 +7,6 @@ GIT
       orm_adapter (~> 0.5.0)
 
 GIT
-  remote: git://github.com/mauriciozaffari/mongoid_search.git
-  revision: dfc7c45157a9339862f140a5641a5ea249d6f48a
-  branch: master
-  specs:
-    mongoid_search (0.3.2)
-      fast-stemmer (~> 1.0.0)
-      mongoid (>= 3.0.0)
-
-GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 35aea60b285afce7a1d1f22602b14b21e91c08fa
   specs:
@@ -26,7 +17,7 @@ GIT
       tzinfo (>= 0.3.37)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -203,6 +194,9 @@ GEM
     mongoid-grid_fs (2.1.0)
       mime-types (>= 1.0, < 3.0)
       mongoid (>= 3.0, < 5.0)
+    mongoid_search (0.3.2)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
     moped (2.0.3)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -357,7 +351,7 @@ DEPENDENCIES
   mini_magick
   mongoid!
   mongoid-enum
-  mongoid_search!
+  mongoid_search
   pry
   rails (= 4.2.0)
   rails_admin
