@@ -7,7 +7,12 @@ Rails.application.routes.draw do
 
   resources :users
   
-  resources :products
+  resources :products do
+    collection do
+      get :search
+    end
+  end
+
   
   resources :favorites
 

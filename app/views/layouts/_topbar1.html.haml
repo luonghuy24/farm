@@ -30,4 +30,9 @@
 					
 				- else
 					%li.sign-in-link= link_to "Sign in", new_user_session_url
-					/ %li.sign-up-link= link_to "Sign up", new_user_registration_url
+			%form.navbar-form.navbar-right{:role => "search", method: 'GET', action: '/products/search'}
+				.form-group
+					%input.form-control{:placeholder => "Search", :type => "text", name: 'keywords'}/
+				%button.btn.btn-default{:type => "submit"} 
+					%span.glyphicon.glyphicon-search		
+

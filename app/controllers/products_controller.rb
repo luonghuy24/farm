@@ -45,6 +45,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.full_text_search(params[:keywords], match: :any).asc(:product_name)
+  end
+
   def destroy
     Product.find(params[:id]).destroy
     flash[:success] = "Product deleted"

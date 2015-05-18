@@ -1,5 +1,6 @@
 class Product
-  include Mongoid::Document
+	include Mongoid::Document
+  include Mongoid::Search
 	validates_presence_of :product_name, :product_code, :description, :price
 
 	field :product_name,			type: String
@@ -7,7 +8,7 @@ class Product
 	field :description,				type: String
 	field :standard,					type: String
 	field :type, 							type: Array
-  # %w(rau\ sạch củ quả thịt hạt hạt\ giống gia\ vị  )
+	# %w(rau\ sạch củ quả thịt hạt hạt\ giống gia\ vị  )
 
 	field :production_date, 	type: DateTime
 	field :expiry_date,				type: DateTime
@@ -15,8 +16,11 @@ class Product
 	field :output,						type: Integer
 	field :stock,							type: Integer
 	field :price,							type: Integer
-  mount_uploader :image, ImageUploader
+	mount_uploader :image, ImageUploader
 
-  has_many :favorites
-  belongs_to :item
+	has_many :favorites
+	belongs_to :item
+	
+	search_in :product_code, :product_name, :type_array, :standard, :description 
+
 end

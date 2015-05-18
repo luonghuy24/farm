@@ -1,0 +1,9 @@
+.product-list-by-type
+	%span.search-header= "Tìm được " + "#{@products.size}" + " sản phẩm phù hợp"
+	.pl-body.row
+		%ul#pl-bd-product
+			- @products.each do |product|
+				%li.col-md-3.col-xs-6.product-box
+					#product-image=link_to image_tag(product.image.thumb.url), product_url(product)
+					#product-name=link_to product.product_name, product_url(product)
+					#product-price= product.price.to_s + '.000đ'
