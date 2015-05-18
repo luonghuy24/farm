@@ -61,8 +61,7 @@ group :development, :test do
 	gem 'capistrano-rvm',   '~> 0.1', require: false
 	
 	gem 'letter_opener'
-	gem 'mongoid_search'
-
+	gem 'mongoid_search', github: 'mauriciozaffari/mongoid_search', branch: 'master'
 	# Access an IRB console on exception pages or by using <%= console %> in views
 	gem 'web-console', '~> 2.0'
 
