@@ -1,11 +1,37 @@
+/@product
 .product_show
-  #name Product name:  
-  %h2= @product.product_name
-  #code Product Code:  
-  %h2= @product.product_code
-  #description "Description: "
-  %h2= @product.description
-  #price Price: 
-  %h2= @product.price
+	.col-md-6.col-xs-12.product-image
+		=image_tag @product.image.url
+	.col-md-6.col-xs-12.product-info	
 
+		%span#p_name= @product.product_name
+		#p_code
+			%span Mã sản phẩm:
+			%span=  @product.product_code
+		#p_price
+			%span Giá: 
+			%span= @product.price.to_s + '.000'
+			%span đồng
+		#p_description
+			%span Thông tin sản phẩm:
+			%span= @product.description
+		#p_standard
+			%span Tiêu chuẩn chất lượng:
+			%span= @product.standard
 
+		#p_types
+			%span Chủng loại sản phẩm:  
+			%span= @product.type.join(', ').titleize
+		#p_tags
+			%span tags:
+			%span= @product._keywords.join(', ').titleize
+
+.product_relevant
+	%span.pl-header=link_to 'Sản phẩm liên quan', '#'
+	.pl-body.row
+		%ul#pl-bd-product
+			- @rel_products.each do |product|
+				%li.col-md-3.col-xs-6.product-box
+					#product-image=link_to image_tag(product.image.thumb.url), product_url(product)
+					#product-name=link_to product.product_name, product_url(product)
+					#product-price= product.price.to_s + '.000đ'

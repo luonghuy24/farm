@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @rel_products = Product.full_text_search(@product._keywords, match: :any).limit(8)
   end
   
   def new

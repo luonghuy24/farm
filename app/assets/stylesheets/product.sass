@@ -1,6 +1,31 @@
 .product_show
-	#price
-		text-align: left
+	.col-md-6.col-xs-12.product-image
+		img 
+			width: 100%
+	.col-md-6.col-xs-12.product-info
+		span#p_name
+			font-size: 27px
+			color: #345555
+		#p_code, #p_price, #p_description, #p_standard, #p_types, #p_tags
+			display: block	
+			span
+				font-size: 16px
+				font-weight: bold
+				font-family: arial
+				color: #666666
+			span:nth-child(0n+2)
+				font-weight: normal
+				margin-left: 10px
+		#p_price
+			span:nth-child(0n+2)
+				font-size: 28px
+				font-family: "BebasNeueRegular"
+				color: red
+.product_relevant
+	margin-left: 0
+	display: inline-block
+	margin-top: 50px
+
 span.search-header
 	font-size: 18px
 	margin-bottom: 30px
